@@ -8,6 +8,7 @@ int lexicographic_sort(const char* a, const char* b) {
     // }else{
     //     return b;
     // }
+    return a[0] > b[0];
 }
 
 int lexicographic_sort_reverse(const char* a, const char* b) {
@@ -16,6 +17,7 @@ int lexicographic_sort_reverse(const char* a, const char* b) {
     // }else{
     //     return b;
     // }
+    return a[0] < b[0];    
 }
 
 int sort_by_number_of_distinct_characters(const char* a, const char* b) {
@@ -46,35 +48,24 @@ int sort_by_number_of_distinct_characters(const char* a, const char* b) {
             lenb++;
         }
     }
-    char *temp;
-    int lengths = (strlen(b)>strlen(a)?strlen(b):strlen(a));
-
-    if (lenb > lena){
-        temp = (char*)malloc(lengths*sizeof(char));
-        *temp = *a;
-        *a = *b;
-        *b = *temp;
-    }
+    return lenb > lena;
 }
 
 int sort_by_length(const char* a, const char* b) {
-    char *temp;
-    int lengths = (strlen(b)>strlen(a)?strlen(b):strlen(a));
-
-
-    if (strlen(b) > strlen(a)){
-  
-    }
+    
+    return (strlen(b) > strlen(a));
 }
 
 void string_sort(char** arr,const int len,int (*cmp_func)(const char* a, const char* b)){
-    int *temp;
-    temp = (char*)malloc(lengths*sizeof(char)); 
+    char *temp;
+    temp = (char*)malloc(strlen(*arr)*sizeof(char)); 
     for (int i = 0; i < len; ++i){
         for (int j = i; j < len; ++j){
-            *temp = *a;
-            *a = *b;
-            *b = *temp;
+            if (cmp_func(arr[i],arr[j])){
+                strcpy(temp, *(arr + i));
+                strcpy(*(arr + i), *(arr + j));
+                strcpy(*(arr + j), temp);
+            }
         }
     }
 }
