@@ -1,0 +1,11 @@
+make.exe --dry-run --always-make --keep-going --print-directory
+make.exe: Entering directory 'h:/ISUCourses/CS327/hackerrank/hackerrankchallenge'
+echo Compiling sorting-array-of-strings.cpp
+g++ -Wall -Werror -ggdb3 -funroll-loops -g -DTERM="\"S2021\"" -MMD -MF sorting-array-of-strings.d -c sorting-array-of-strings.cpp
+ 
+echo Linking hack
+g++ sorting-array-of-strings.o -o hack -lncurses
+echo Updating TAGS
+etags *.[ch] *.cpp
+make.exe: Leaving directory 'h:/ISUCourses/CS327/hackerrank/hackerrankchallenge'
+ 
